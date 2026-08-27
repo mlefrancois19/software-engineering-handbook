@@ -23,6 +23,7 @@ A practical handbook describing our end-to-end Software Development Life Cycle (
 | 07 | [CI/CD & Release](./07-cicd-and-release.md) | Pipelines, versioning, deployment strategies, rollback |
 | 08 | [Operations & Continuous Improvement](./08-operations.md) | Observability & SLOs, incidents, on-call, release strategy |
 | 09 | [Infrastructure](./09-infrastructure.md) | Infrastructure as code, cloud & on-prem practices |
+| 10 | [Hiring](./10-hiring.md) | Hiring bar, interview design, decisions, onboarding, metrics |
 
 ## Quick reference: the happy path
 
