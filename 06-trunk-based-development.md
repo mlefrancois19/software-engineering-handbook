@@ -1,4 +1,6 @@
-# 02 — Trunk-Based Development
+# 06 — Trunk-Based Development
+
+TBD is the integration strategy that makes a distributed, async team converge safely: `main` is the single source of truth every time zone merges into, and small, frequent integration keeps conflicts trivial for people who never sit together (chapters 01, 04). Without TBD, a remote team's work fragments into branches that only their authors understand.
 
 Trunk-based development (TBD) means all developers integrate their work into a single branch — `main` (the *trunk*) — in small, frequent increments. There are no long-lived `develop`/`release` branches and no merge hell.
 
@@ -59,7 +61,7 @@ When work genuinely cannot ship incrementally:
 
 - We version with semantic versioning tags (`v1.4.2`) applied by CI when releasing; we do **not** maintain long-lived release branches.
 - Patch releases are cut from a tag on `main` (cherry-pick only if `main` has moved past a critical fix).
-- See chapter 07 for the full release process.
+- See chapter 11 for the full release process.
 
 ## Anti-patterns to avoid
 

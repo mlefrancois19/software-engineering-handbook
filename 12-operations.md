@@ -1,4 +1,6 @@
-# 08 — Operations & Continuous Improvement
+# 12 — Operations & Continuous Improvement
+
+Operations is the discipline that runs without the operator in the room: dashboards, SLOs, and runbooks answer "is it healthy?" without anyone having to ask (chapters 01, 02). The practices below are written-first by design — alert routing, on-call handoffs, and follow-the-sun rotations all assume the next person to wake up picks up full context from the record.
 
 ## Observability
 
@@ -10,7 +12,7 @@ Every service ships with, before first production release:
 - **Dashboards**: one overview dashboard per service, generated from a template.
 - **Alerts**: symptom-based (SLO burn rate), not cause-based; every alert links to a runbook.
 
-A service that deployed but cannot be inspected is not released. Observability is a release gate (chapter 07), not an afterthought.
+A service that deployed but cannot be inspected is not released. Observability is a release gate (chapter 11), not an afterthought.
 
 ### Metrics
 
@@ -77,7 +79,7 @@ A service that deployed but cannot be inspected is not released. Observability i
 - Each additional nine multiplies operational cost and complexity; a promised target you cannot measure is worse than no target.
 - Keep internal/contract SLOs (dependencies: "DB provides 99.95%") distinct from external/user-facing ones; internal SLO failures must become visible before they become user impact.
 - SLOs are product decisions: set with product management, reviewed quarterly.
-- New services define SLOs before GA — part of the release checklist (chapter 07).
+- New services define SLOs before GA — part of the release checklist (chapter 11).
 
 ### Error budgets
 
@@ -103,7 +105,7 @@ The recommended alert style: watch the rate at which the error budget is consume
 ## Incident management
 
 1. **Detect** — alerting or user report; on-call acknowledges within 5 minutes.
-2. **Mitigate** — stabilize first: rollback, flag off, scale out. Mitigation > diagnosis (rollback mechanics, chapter 07).
+2. **Mitigate** — stabilize first: rollback, flag off, scale out. Mitigation > diagnosis (rollback mechanics, chapter 11).
 3. **Communicate** — status page updates at defined intervals; single incident commander.
 4. **Resolve** — confirm recovery via metrics.
 5. **Learn** — blameless postmortem within 48 hours: timeline, root cause (5 whys), contributing factors, action items as tracked tickets with owners and due dates.
@@ -119,21 +121,21 @@ The recommended alert style: watch the rate at which the error budget is consume
 - Primary + secondary (escalation) + tertiary (manager), all recorded in the on-call tool; coverage must be 24/7 × 365 for user-facing services — schedule coverage reports catch gaps.
 - Rotation length matches incident load: 7 days is typical; shorten for high-load teams (fatigue → slow responses), lengthen for quiet services.
 - Swaps and overrides are made in the tool ahead of time, never arranged silently in chat — the schedule is the source of truth for who is reachable.
-- Timezone-aware: global teams use follow-the-sun or at least explicit per-region ownership windows.
+- Timezone-aware: global teams use follow-the-sun or at least explicit per-region ownership windows (chapter 02).
 - Shadow rotation before solo: nobody goes on call for a system they have never operated.
 
 ### When the page fires
 
 1. **Acknowledge within the SLO (5 min)** — acknowledge first, triage after. Acknowledgment stops escalation; it is not resolution.
 2. **Assess** severity and blast radius: one service? user-impacting? cross-region?
-3. **Mitigate before diagnose** — rollback, flag off, scale out. Stabilize first (chapter 07).
+3. **Mitigate before diagnose** — rollback, flag off, scale out. Stabilize first (chapter 11).
 4. **Declare & communicate** — create the incident channel, set severity, update the status page per policy, designate the incident commander.
 5. **Escalate early** — if not understood within ~20–30 minutes, pull in the secondary and the service owner. Paging early is a skill, not a failure.
 6. **Resolve in the tool when actually fixed** — verified on metrics, follow-ups tracked. Resolve ≠ "I saw it".
 
 ### Handoffs
 
-- End-of-shift handoff notes: what fired, what was done, what is still open, known issues, things to watch. Written even on quiet shifts ("no incidents; watch the X migration Wednesday").
+- End-of-shift handoff notes: what fired, what was done, what is still open, known issues, things to watch. Written even on quiet shifts ("no incidents; watch the X migration Wednesday") — the handoff-quality bar of chapter 02 applies to every handoff, not just on-call ones.
 - Handoff template lives in the repo; notes go in the on-call tool so they attach to the schedule.
 - The incoming on-call reads the handoff while the outgoing is still around to answer questions — a short overlap beats a Slack ping at 02:00.
 
@@ -198,7 +200,7 @@ Web platform + Slack commands: service catalog with dependency mapping, runbooks
 
 ## Release strategy
 
-Chapter 07 defines the strategy menu and rollout mechanics; this section is the operational half — how to pick a strategy and, because canary is the default for any service with traffic, how to *build* systems that can be canaried safely.
+Chapter 11 defines the strategy menu and rollout mechanics; this section is the operational half — how to pick a strategy and, because canary is the default for any service with traffic, how to *build* systems that can be canaried safely.
 
 ### Picking a strategy
 
@@ -207,9 +209,9 @@ Chapter 07 defines the strategy menu and rollout mechanics; this section is the 
 | Service with real traffic, standard change | Canary (default) |
 | Instant switchback matters more than double capacity | Blue-green |
 | No user traffic (batch jobs, internal tools) | Rolling |
-| Exposure control decoupled from deploy | Feature flags (chapter 02) |
+| Exposure control decoupled from deploy | Feature flags (chapter 06) |
 
-- Every release must be reversible: one-command rollback or automatic, and fast. A change that cannot be rolled back does not ship through the normal path — it becomes a stop-the-line fix-forward with a documented plan (chapter 07).
+- Every release must be reversible: one-command rollback or automatic, and fast. A change that cannot be rolled back does not ship through the normal path — it becomes a stop-the-line fix-forward with a documented plan (chapter 11).
 
 ### Building services that can be canaried
 
@@ -217,7 +219,7 @@ Canary-readiness is a property of the *service*, not the pipeline. A service is 
 
 - **Instances are disposable**: no valuable state on the instance — sessions, warm caches, and local queues live in shared stores (DB, KV, object storage, dedicated session store). Any instance can be killed at any moment without user-visible impact.
 - **Stateless and horizontally scalable**: traffic can be split and rebalanced without affinity constraints — or affinity exists *by design* (consistent hashing on user id) so one user stays on one version across a request flow.
-- **Migrations are backward compatible**: schema and data changes follow expand → migrate → contract (chapter 03) so old and new versions run side by side against the same database. Irreversible or data-reshaping migrations are explicitly not canary-able.
+- **Migrations are backward compatible**: schema and data changes follow expand → migrate → contract (chapter 07) so old and new versions run side by side against the same database. Irreversible or data-reshaping migrations are explicitly not canary-able.
 - **API and message contracts are version-tolerant**: both versions may call or receive from each other; request/response and event schemas change additively (schema registry on async paths) so the previous version keeps working for the whole window.
 - **Readiness gating**: traffic is routed only to instances reporting ready; an instance starts serving only when its dependencies are warm.
 - **Graceful shutdown**: on termination the instance deregisters from the load balancer, stops taking new work, drains in-flight requests, then exits (SIGTERM handling). A killed canary instance must not error the requests it was serving.
@@ -226,16 +228,16 @@ Canary-readiness is a property of the *service*, not the pipeline. A service is 
 
 ### Running the canary
 
-- Start small and step up: 5% → bake (≥ 30 min) → 25% → 50% → 100% (chapter 07). One step at a time; each step is a separate go/no-go decision.
+- Start small and step up: 5% → bake (≥ 30 min) → 25% → 50% → 100% (chapter 11). One step at a time; each step is a separate go/no-go decision.
 - Auto-abort is wired to SLO burn (burn-rate alerting, above): a breach during any step rolls the release back without waiting for a human at 03:00.
-- Feature flags (chapter 02) are the second kill switch: the riskiest behavior changes ship behind a flag that toggles independently of the deploy, giving two independent rollback levers.
+- Feature flags (chapter 06) are the second kill switch: the riskiest behavior changes ship behind a flag that toggles independently of the deploy, giving two independent rollback levers.
 - The canary only catches what the baseline measures: assert error budget, error rate, and latency p99 at minimum, plus a human spot-check during the early bake.
 
 ### What not to canary
 
 - Irreversible migrations and data-corruption risks — blue-green or stop-the-line fix-forward.
 - Long-running batch jobs with an undefined tail — rolling with a monitored checkpoint.
-- The release mechanism itself (pipeline, registry, IaC tooling — chapter 09): bootstrap changes ride their own canary — prove the new tooling on one environment before it carries a real release.
+- The release mechanism itself (pipeline, registry, IaC tooling — chapter 13): bootstrap changes ride their own canary — prove the new tooling on one environment before it carries a real release.
 
 ### Canary-readiness checklist (release gate)
 
@@ -246,7 +248,7 @@ Canary-readiness is a property of the *service*, not the pipeline. A service is 
 - [ ] Percentage + cohort traffic split available
 - [ ] New-vs-old baseline dashboards exist for the bake window
 - [ ] Auto-abort on SLO burn wired and rehearsed
-- [ ] Rollback tested: previous artifact runs against the current schema (chapter 07)
+- [ ] Rollback tested: previous artifact runs against the current schema (chapter 11)
 
 ## Continuous improvement loop
 

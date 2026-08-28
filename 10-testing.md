@@ -1,4 +1,6 @@
-# 06 — Testing
+# 10 — Testing
+
+The automated pipeline is the quality gate that never needs anyone in the room: every check runs identically for whoever merges, in any time zone (chapters 01, 11). In a remote team, tests are also the *handoff* — the proof that a change is safe travels with the merge, not with the author.
 
 ## Test strategy
 
@@ -53,7 +55,7 @@ Testing is continuous and automated. The pipeline is the primary quality gate; m
 - SAST on every PR; DAST against staging weekly.
 - Dependency & container scanning (SCA) blocking critical/high.
 - Secrets scanning pre-commit + CI.
-- Threat model (STRIDE-lite) required for new externally exposed surfaces (see chapter 04 design doc).
+- Threat model (STRIDE-lite) required for new externally exposed surfaces (see chapter 08 design doc).
 
 ## Manual & exploratory testing
 

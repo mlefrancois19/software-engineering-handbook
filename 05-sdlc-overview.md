@@ -1,4 +1,6 @@
-# 01 — SDLC Overview
+# 05 — SDLC Overview
+
+This chapter is the bridge between the remote operating model (chapters 01–04) and the engineering lifecycle: it defines the stages, roles, and definitions of done that the rest of Part II operationalizes. The lifecycle below is deliberately written for a distributed team — every stage has a written artifact, an async-friendly review, and an automated gate.
 
 ## Lifecycle at a glance
 
@@ -21,11 +23,11 @@ Continuous integration (CI) is a **practice, not a tool**: every change merged t
 
 ### Why CI beats the alternatives
 
-- **The cost of a defect grows with its age.** A bug caught minutes after it lands is fixed in minutes, with the author's context still hot, and ships in the same batch. A bug caught at release time costs a rollback and an incident (chapter 08). A bug caught weeks later, after others have merged on top of it, costs archaeology. CI keeps defect age at hours, not weeks.
+- **The cost of a defect grows with its age.** A bug caught minutes after it lands is fixed in minutes, with the author's context still hot, and ships in the same batch. A bug caught at release time costs a rollback and an incident (chapter 12). A bug caught weeks later, after others have merged on top of it, costs archaeology. CI keeps defect age at hours, not weeks.
 - **Integration is the riskiest moment — CI makes it happen daily instead of eventually.** Long-lived branches and big-bang merges do not avoid integration problems; they postpone and compound them. Merging two weeks of parallel work at once produces conflicts and breakage that are expensive, demoralizing, and usually discovered by the wrong person. Merging a day's worth of small diffs keeps the trunk green and the conflicts trivial.
-- **Feedback is immediate.** Verification runs in minutes (chapter 07), so a problem surfaces while the change is still the author's active work. Nightly builds hand you yesterday's problems, by which time you have built more code on top of them.
-- **Small diffs and healthy reviews.** Continuous integration rewards small PRs (chapter 05): reviewers check small, green changes instead of thousand-line firehoses, and review latency stays low because nothing queues up behind a broken trunk.
-- **It is the base layer for everything else in this handbook.** Trunk-based development (chapter 02), CD, canary releases, and instant rollbacks (chapter 07) all assume the trunk is always releasable — which is exactly what CI enforces. Without CI, CD is just "deploying broken builds faster".
+- **Feedback is immediate.** Verification runs in minutes (chapter 11), so a problem surfaces while the change is still the author's active work. Nightly builds hand you yesterday's problems, by which time you have built more code on top of them.
+- **Small diffs and healthy reviews.** Continuous integration rewards small PRs (chapter 09): reviewers check small, green changes instead of thousand-line firehoses, and review latency stays low because nothing queues up behind a broken trunk.
+- **It is the base layer for everything else in this handbook.** Trunk-based development (chapter 06), CD, canary releases, and instant rollbacks (chapter 11) all assume the trunk is always releasable — which is exactly what CI enforces. Without CI, CD is just "deploying broken builds faster".
 - **"Done" means "merged and green".** Work sitting in an un-integrated branch is inventory, not progress — and everyone is still paying for it. CI makes the state of the product visible and honest at all times.
 
 ### How it compares to the alternatives
@@ -40,9 +42,9 @@ Continuous integration (CI) is a **practice, not a tool**: every change merged t
 
 ### What keeps CI honest
 
-- **Speed is a feature, not a nicety.** A build that takes much longer than ~10 minutes gets skipped, gamed, or waited-on impatiently (chapter 07). Caching, test sharding, and parallelism are CI investments, not luxuries.
-- **Flaky tests are poison.** A red suite that nobody believes becomes noise, and noise trains people to ignore the trunk. Fix or quarantine flaky tests immediately (chapter 08, weekly flaky report).
-- **Incomplete work must not block the trunk.** Work that is not ready to ship merges behind feature flags (chapter 02) so `main` stays green and releasable at all times.
+- **Speed is a feature, not a nicety.** A build that takes much longer than ~10 minutes gets skipped, gamed, or waited-on impatiently (chapter 11). Caching, test sharding, and parallelism are CI investments, not luxuries.
+- **Flaky tests are poison.** A red suite that nobody believes becomes noise, and noise trains people to ignore the trunk. Fix or quarantine flaky tests immediately (chapter 12, weekly flaky report).
+- **Incomplete work must not block the trunk.** Work that is not ready to ship merges behind feature flags (chapter 06) so `main` stays green and releasable at all times.
 
 ## Agile methodology
 
@@ -52,13 +54,13 @@ Agile is a **mindset, not a procedure**: deliver working software in small incre
 
 - The four manifesto values: individuals and interactions over processes and tools; working software over comprehensive documentation; customer collaboration over contract negotiation; responding to change over following a plan.
 - Working software is the measure of progress; sustainable pace; self-organizing teams; regular reflection and adjustment (inspect & adapt).
-- Agile and continuous delivery are the same idea at different levels: small batches and fast feedback appear at the product level (chapter 02) and at the integration level (continuous integration, above).
+- Agile and continuous delivery are the same idea at different levels: small batches and fast feedback appear at the product level (chapter 06) and at the integration level (continuous integration, above).
 
 ### Scrum
 
 - **Shape**: fixed-length iterations (sprints, typically 1–4 weeks); three roles — product owner, scrum master, developers; ceremonies — sprint planning, daily standup, review, retrospective, backlog refinement; artifacts — product backlog, sprint backlog, increment.
 - **Fits**: product feature work with a stable team and a product owner who can make priority decisions continuously; organizations that need a time-boxed rhythm to force decisions.
-- **Consider if adopting**: ceremony overhead is real — a small team can spend a third of a day in planning per sprint; sprint commitment can ossify into deadline pressure (velocity is an estimation tool, never a productivity goal); the sprint boundary is a *planning* boundary, not a release gate — with CD (chapter 07) we release when ready, not when the sprint ends; product-owner availability is the most common failure mode (priorities stagnate mid-sprint); support and incident interruption needs an explicit capacity buffer or sprints become fiction.
+- **Consider if adopting**: ceremony overhead is real — a small team can spend a third of a day in planning per sprint; sprint commitment can ossify into deadline pressure (velocity is an estimation tool, never a productivity goal); the sprint boundary is a *planning* boundary, not a release gate — with CD (chapter 11) we release when ready, not when the sprint ends; product-owner availability is the most common failure mode (priorities stagnate mid-sprint); support and incident interruption needs an explicit capacity buffer or sprints become fiction.
 
 ### Kanban
 
@@ -74,8 +76,8 @@ Agile is a **mindset, not a procedure**: deliver working software in small incre
 
 ### XP & Lean
 
-- **XP (extreme programming)** contributes the engineering practices this handbook already assumes: TDD, pairing/collective ownership, continuous integration (chapters 05, 06). Adopt the practices even when the board and the cadence come from another framework.
-- **Lean software development** is the intellectual parent of kanban: eliminate waste, amplify learning, decide as late as possible, deliver fast, build quality in, optimize the whole. It is a useful lens for retrospectives (chapter 08) — every recurring waste in the flow is a candidate for elimination.
+- **XP (extreme programming)** contributes the engineering practices this handbook already assumes: TDD, pairing/collective ownership, continuous integration (chapters 09, 10). Adopt the practices even when the board and the cadence come from another framework.
+- **Lean software development** is the intellectual parent of kanban: eliminate waste, amplify learning, decide as late as possible, deliver fast, build quality in, optimize the whole. It is a useful lens for retrospectives (chapter 12) — every recurring waste in the flow is a candidate for elimination.
 
 ### Choosing a framework
 
@@ -92,8 +94,8 @@ Agile is a **mindset, not a procedure**: deliver working software in small incre
 - **Match the framework to the work, not to an identity.** A well-run kanban beats a sloppy scrum; a team that copies scrum ceremonies without changing behavior has adopted theater, not agile.
 - **Team size and maturity matter**: small teams (2–4 people) rarely need scrum's ceremony; large teams need explicit coordination (scrum-of-scrums or per-service boards); new teams often benefit from scrum's structure and then relax into scrumban.
 - **Interrupt rate decides a lot**: teams with heavy on-call/support load should prefer flow-based frameworks and reserve capacity explicitly, or sprints become fiction.
-- **Metrics are for steering, not for grading**: velocity and cycle time are team-internal instruments (chapter 08's continuous improvement loop) — using them as targets invites gaming.
-- **Remote or async teams**: the board is the source of truth; ceremonies must be async-friendly; the daily standup becomes a written update or a short async check-in.
+- **Metrics are for steering, not for grading**: velocity and cycle time are team-internal instruments (chapter 12's continuous improvement loop) — using them as targets invites gaming.
+- **Remote or async teams**: the board is the source of truth; ceremonies must be async-friendly; the daily standup becomes a written update or a short async check-in (see chapters 02 and 03).
 - **Evolve deliberately**: the retrospective is the mechanism for changing the framework itself — tweaking sprint length, WIP limits, or classes of service each cycle is the process working, not a sign it failed.
 
 ### Measuring velocity
@@ -113,14 +115,14 @@ Velocity is how much *completed* work a team ships per iteration — the team's 
 
 - Forecasting: "the team completes ~N points per sprint → this backlog is roughly Y sprints away". Rough, honest, and useful — never a promise.
 - Capacity planning for the next iteration, including an explicit buffer for interrupts and incidents.
-- Trend monitoring across quarters in the retrospective (chapter 08): is the team sustainably faster or slower over time?
+- Trend monitoring across quarters in the retrospective (chapter 12): is the team sustainably faster or slower over time?
 
 **What it must never be used for**
 
 - A target ("velocity ≥ 40") — targets turn estimates into negotiation and reward inflation; work expands to fill the estimate.
 - Comparisons between teams — scales differ per team, so a "fast" team may just estimate larger. Cross-team velocity comparisons are meaningless and corrosive.
 - A KPI, incentive, or performance metric — velocity is team-internal; grading it invites gaming.
-- A claim about value or quality — finishing more points is not delivering more value; read velocity alongside defect and incident rates (chapters 06, 08).
+- A claim about value or quality — finishing more points is not delivering more value; read velocity alongside defect and incident rates (chapters 10, 12).
 
 **The flow-based alternative**
 
@@ -128,7 +130,7 @@ Kanban and scrumban teams drop points entirely: throughput (completed items per 
 
 **Delivery-system velocity (DORA)**
 
-For the health of the delivery system as a whole, complement sprint velocity with the DORA metrics: deployment frequency, lead time for change, change failure rate, and time to restore (chapters 07, 08). Sprint velocity answers "can the team plan the next iteration?"; DORA answers "is the delivery system healthy?".
+For the health of the delivery system as a whole, complement sprint velocity with the DORA metrics: deployment frequency, lead time for change, change failure rate, and time to restore (chapters 11, 12). Sprint velocity answers "can the team plan the next iteration?"; DORA answers "is the delivery system healthy?".
 
 ## Stage details
 
@@ -143,24 +145,24 @@ For the health of the delivery system as a whole, complement sprint velocity wit
 - Estimate with relative sizing (S/M/L or story points); re-estimate only if scope changes materially.
 
 ### 3. Architecture & Design
-- Significant decisions require an ADR (Architecture Decision Record) — see chapter 03.
+- Significant decisions require an ADR (Architecture Decision Record) — see chapter 07.
 - Non-trivial features require a short design document reviewed before implementation.
-- Design reviews are asynchronous by default; synchronous only when discussion stalls.
+- Design reviews are asynchronous by default; synchronous only when discussion stalls (chapter 04).
 
 ### 4. Implementation
 - Branch off `main`, live < 2 days, merge behind feature flags if incomplete.
 - Test-driven where practical: failing test first, then implementation.
-- See chapters 02 and 05.
+- See chapters 06 and 09.
 
 ### 5. Testing & Quality Gates
 - CI must be green before merge: unit + integration tests, linting, type checks, vulnerability scans.
 - Coverage on changed code must not decrease.
-- See chapter 06.
+- See chapter 10.
 
 ### 6. Release & Deployment
 - Merging to `main` triggers the CD pipeline. Deploys are automated to staging, then production via progressive delivery (canary/blue-green).
 - Releases are decoupled from features using feature flags.
-- See chapter 07.
+- See chapter 11.
 
 ### 7. Operation & Feedback
 - Everything shipped has dashboards, alerts, and logs defined *before* release.

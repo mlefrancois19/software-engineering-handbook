@@ -1,4 +1,6 @@
-# 05 — Code Implementation
+# 09 — Code Implementation
+
+The PR is the primary durable artifact of remote collaboration — the place where engineers teach and learn across time zones, and where the team's async responsiveness is visible (chapters 02, 03). Draft PRs are legitimate async WIP communication; review latency is the team's async contract, and it is measured in hours, not days.
 
 ## Coding standards
 
@@ -37,21 +39,21 @@ TDD is expected for domain/business logic; pragmatic exceptions exist for explor
 - [ ] No secrets, no debug leftovers
 
 **Reviewer responsibilities:**
-- First response within **1 business day** (hours preferred — TBD lives or dies by review latency).
+- First response within **1 business day** (hours preferred — TBD lives or dies by review latency; this is the async responsiveness contract of chapters 02 and 03).
 - Review scope: correctness, readability, tests adequacy, security, API compatibility, operational impact.
 - Tone: comments about code, not people; label nitpicks as `nit:`; prefer questions over commands.
 - Approval requires CI green. Two approvals for security-sensitive or high-risk paths.
 
-**Merging:** squash-merge after approval; delete branch; merge queue enforces trunk health (chapter 02).
+**Merging:** squash-merge after approval; delete branch; merge queue enforces trunk health (chapter 06).
 
 ## Refactoring & technical debt
 
 - Boy Scout rule within reason: leave touched code better, but keep PRs focused — refactors are separate PRs.
 - Debt is tracked as tickets with explicit impact statements; teams reserve ~20% capacity for debt/reliability work.
-- Large migrations use strangler/incremental strategies compatible with short-lived branches (chapter 02).
+- Large migrations use strangler/incremental strategies compatible with short-lived branches (chapter 06).
 
 ## Documentation in code
 
 - README per service/module: purpose, how to run locally, how to deploy, key commands.
-- Generated API docs from contracts (chapter 04) — hand-written endpoint docs are forbidden duplication.
-- Runbooks linked from alerts (chapter 08).
+- Generated API docs from contracts (chapter 08) — hand-written endpoint docs are forbidden duplication.
+- Runbooks linked from alerts (chapter 12).

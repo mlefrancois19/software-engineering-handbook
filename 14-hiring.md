@@ -1,4 +1,6 @@
-# 10 — Hiring
+# 14 — Hiring & Onboarding
+
+Hiring remote is hiring for self-direction and written communication: the people who thrive are the ones who make progress without anyone in the room (chapter 01). The whole process — scheduling, exercises, onboarding, ramp — is engineered for time zones and async by default (chapters 02, 03).
 
 Hiring is the highest-leverage decision an engineering team makes: every hire changes the team's capacity, standards, and culture for years. The bar is the one thing that is never compromised — a team that lowers it once teaches everyone that compromises happen, and a bad hire costs far more than a slow hire. And the process is a product: candidates experience it first-hand, and a badly run process repels the very people you want.
 
@@ -19,6 +21,13 @@ Hiring is the highest-leverage decision an engineering team makes: every hire ch
 - **Score immediately and individually** at the end of each interview, against the rubric, before anyone talks — then debrief as a team and read the evidence, not the strongest personality.
 - **Include the people who will work with them**: a future-teammate interview adds a different axis than the hiring manager's.
 
+### Remote hiring
+
+- **Timezone-fair scheduling**: synchronous time is one block per round, rotated across the candidate's core hours; everything else — exercises, questions, check-ins — is written (chapters 02, 03). A gauntlet that runs across six time zones selects for endurance, not skill.
+- **Async take-homes, reviewed by two**: the take-home (capped 2–4 hours) is evaluated independently by two reviewers against the rubric before the synchronous rounds — and it doubles as the first sample of how the candidate communicates in writing.
+- **Self-direction is a hiring signal**: remote work rewards the candidate who picks up the repo, asks written questions, and produces artifacts without being driven. Watch how they behave *between* rounds, not just during them.
+- **Written communication is a core competency**: scored independently of the code, because in a distributed team the writing carries the work (chapters 01, 02).
+
 ## Decisions
 
 - **The debrief decides, not the loudest voice**: hire/no-hire comes from the collected evidence. Disagreements are settled by weighing the rubric, not by seniority.
@@ -34,6 +43,14 @@ Hiring is the highest-leverage decision an engineering team makes: every hire ch
 - **A structured ramp**: 30/60/90 goals agreed on day one — a buddy, pairing for the first weeks, and an early visible win. Checkpoints are for feedback, not surveillance.
 - **Match the ramp to the role**: time-to-productivity is a tracked metric, and the expectation is explicit ("solid by month 2, autonomous by month 3" for a mid-level hire).
 - **The hiring rubric becomes the growth rubric**: the dimensions scored at hiring become the calibration language for 1:1s and reviews — one standard from candidate to senior.
+
+### Remote onboarding
+
+- **Day-one access is provisioned before day one**: credentials, repos, tools, and calendar invites are ready the Friday before, and an async onboarding checklist in the repo is the source of truth — nothing about the first week depends on a human being awake in the hire's time zone.
+- **The 30/60/90 ramp is written and public**: goals, milestones, and the first shipped artifact are documented in the repo, not arranged in chat; checkpoints are for feedback, not surveillance (chapter 03).
+- **A buddy in an overlapping time zone**: the designated first human for questions — but the written record is primary, the buddy is the shortcut (chapter 02).
+- **The first week is async-safe**: reading, small tasks, and recorded walkthroughs that require no one to be online simultaneously; the new hire posts a written intro and gets written responses.
+- **Time-to-productivity is measured in shipped artifacts**: the ramp is "solid by month 2, autonomous by month 3", and the shipped artifacts are the evidence (tracked in the metrics table below).
 
 ## What good hiring never does
 

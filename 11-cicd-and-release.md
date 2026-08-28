@@ -1,4 +1,6 @@
-# 07 — CI/CD & Release
+# 11 — CI/CD & Release
+
+Automation removes the need for synchronized humans: the pipeline is the hand-off between time zones. Merging from anywhere, at any hour, is safe because the gate is a machine — reproducible builds, automated deploys, and automatic rollback on SLO breach (chapters 01, 12).
 
 ## Continuous Integration
 
@@ -47,8 +49,8 @@ main → build & sign image → deploy staging → smoke + E2E + DAST
 ## Rollbacks
 
 - Rollback must be a **first-class, tested path**: one command / automatic on SLO breach.
-- Database migrations are backward compatible so the previous app version keeps working (expand → migrate → contract, chapter 03).
-- If rollback is unsafe (irreversible migration, data corruption): stop-the-line, incident process (chapter 08), fix forward with a documented plan.
+- Database migrations are backward compatible so the previous app version keeps working (expand → migrate → contract, chapter 07).
+- If rollback is unsafe (irreversible migration, data corruption): stop-the-line, incident process (chapter 12), fix forward with a documented plan.
 
 ## Release checklist (automated where possible)
 
@@ -67,7 +69,7 @@ Hotfixes follow the same trunk path — there is no special fast lane that bypas
 1. Branch from `main`, minimal fix + regression test that reproduces the incident.
 2. Fast-track review by two senior engineers (on-call + service owner).
 3. Merge → pipeline deploys via canary with shortened bake time.
-4. Postmortem within 48h (chapter 08).
+4. Postmortem within 48h (chapter 12).
 
 ## Environment policy
 
@@ -78,4 +80,4 @@ Hotfixes follow the same trunk path — there is no special fast lane that bypas
 | Staging | Production-like validation | Masked/synthetic production-like volume |
 | Production | Real users | Real (governed by privacy policy) |
 
-Environments are provisioned as code (IaC, chapter 09) — drift between them is treated as a bug.
+Environments are provisioned as code (IaC, chapter 13) — drift between them is treated as a bug.

@@ -1,4 +1,6 @@
-# 03 — Architecture
+# 07 — Architecture
+
+ADRs are the async decision records that make distributed architecture work: every expensive-to-reverse decision is written down, reviewed in a comment window that spans time zones, and decided by a deadline (chapter 04). The architecture review path below is intentionally async-friendly — no decision requires a room or a live debate.
 
 ## Architectural principles
 
@@ -60,7 +62,7 @@ Positive, negative, and what this constrains going forward.
 
 ### Non-functional requirements
 - Define SLOs (availability, latency) for user-facing paths before building them.
-- Capacity planning: know expected QPS/data volume and validate with load tests (chapter 06).
+- Capacity planning: know expected QPS/data volume and validate with load tests (chapter 10).
 
 ## Architecture review
 
@@ -71,7 +73,7 @@ Positive, negative, and what this constrains going forward.
 | New technology / service split / data model migration | ADR + async architecture review |
 | Security-relevant | + security champion review |
 
-Reviews are timeboxed: if no consensus in ~3 business days, the tech lead decides and records it in the ADR ("disagree and commit").
+Reviews are timeboxed: if no consensus in ~3 business days, the tech lead decides and records it in the ADR ("disagree and commit" — chapter 04).
 
 ## Fitness functions (enforced in CI)
 

@@ -1,4 +1,6 @@
-# 04 — Design
+# 08 — Design
+
+The design document is the async contract between "what" and "how": written, versioned, and reviewed in a comment window that spans time zones (chapters 02, 04). A design that exists only in a shared brain is a design that cannot be reviewed, challenged, or remembered.
 
 Design sits between "what" (requirements) and "how" (code). Good design documents make small, safe trunk-based increments possible.
 
@@ -41,7 +43,7 @@ Metrics, logs, traces, alerts added for this feature.
 Known unknowns; failure modes.
 ```
 
-Review process: open a PR with the doc → async review within 2 business days → resolve comments → merge the doc as the record of intent. Implementation then proceeds in trunk-sized increments.
+Review process: open a PR with the doc → async review within 2 business days → resolve comments → merge the doc as the record of intent (the window spans all time zones — chapter 04). Implementation then proceeds in trunk-sized increments.
 
 ## API design best practices
 
