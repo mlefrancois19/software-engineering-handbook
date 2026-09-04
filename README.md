@@ -1,6 +1,6 @@
 # Software Engineering Handbook
 
-A practical handbook for operating engineering teams optimally in a **remote-first** setup. It covers how a distributed team communicates, makes decisions, and runs its rituals (Part I), the engineering practices that make distributed delivery safe and fast (Part II), and how we hire and onboard people who will thrive in it (Part III).
+A practical handbook for operating engineering teams optimally in a **remote-first** setup. It covers how a distributed team communicates, makes decisions, and runs its rituals (Part I), the engineering practices that make distributed delivery safe and fast (Part II), and how we hire, onboard, and support the growth of individual contributors in a remote-first environment (Part III).
 
 Remote-first does not mean "office-optional." It means remote is the **default**: every process, ritual, and tool is designed for people who are not in the same room, in the same time zone, or awake at the same hour. Synchronous time is scheduled, scarce, and earned; everything else runs asynchronously through durable artifacts.
 
@@ -45,11 +45,14 @@ We optimize for three things above all: **outcomes, not hours**; **durable artif
 | 12 | [Operations & Continuous Improvement](./12-operations.md) | Observability & SLOs, incidents, on-call, release strategy |
 | 13 | [Infrastructure](./13-infrastructure.md) | Infrastructure as code, cloud & on-prem practices |
 
-### Part III — People
+### Part III — People & The IC Lifecycle
 
 | # | Chapter | Description |
 |---|---------|-------------|
 | 14 | [Hiring & Onboarding](./14-hiring.md) | Hiring bar, remote interview design, onboarding, metrics |
+| 15 | [Thriving as a Remote IC](./15-thriving-as-ic.md) | Visibility, async hygiene, agency, and sustainable pace |
+| 16 | [Technical Leadership & Craft](./16-technical-leadership.md) | Leading via RFCs, mentorship through review, and technical debt |
+| 17 | [Growth & The IC Path](./17-ic-growth.md) | The IC ladder, impact vs activity, and the IC/Management fork |
 
 ## Quick reference: how we work
 
