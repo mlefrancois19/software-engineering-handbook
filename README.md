@@ -27,7 +27,7 @@ We optimize for three things above all: **outcomes, not hours**; **durable artif
 | # | Chapter | Description |
 |---|---------|-------------|
 | 01 | [Remote-First Principles](./01-remote-first-principles.md) | The constitution: what remote-first means, outcomes over hours, failure modes |
-| 02 | [Communication & Async Collaboration](./02-communication-async-collaboration.md) | Channel taxonomy, writing craft, time zones, chat hygiene |
+| 02 | [Communication & Async Collaboration](./02-communication-async-collaboration.md) | Channel taxonomy, public vs. private discussion, Slack hygiene, time zones, sync setup |
 | 03 | [Meetings & Team Rituals](./03-meetings-team-rituals.md) | Meeting policy, ceremonies adapted to async, meeting hygiene |
 | 04 | [Decision-Making & Coordination](./04-decision-making-coordination.md) | Decision rights, async RFC/ADR flow, tracker as source of truth |
 
